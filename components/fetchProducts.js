@@ -1,6 +1,3 @@
-// getting the html elements into js
-const productsContainer = document.querySelector(".products");
-
 // fetch the products
 const fetchProducts = async (url) => {
     try {

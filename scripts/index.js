@@ -14,6 +14,8 @@ function getProductsData(){
 }
 getProductsData();
 
+// TODO:This commented code will be removed later
+ 
 // // fetch the products
 // const fetchProducts = async () => {
 //   try {
