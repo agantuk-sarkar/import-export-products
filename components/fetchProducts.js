@@ -8,9 +8,7 @@ const fetchProducts = async (pageNo, limit = 10) => {
       if (response.ok) {
         const data = await response.json();
         return data;
-  
-        // console.log(data);
-        // displayProducts(data);
+
       } else {
         throw new Error("Invalid request");
       }

@@ -1,30 +1,46 @@
 import navBar from "../components/navbar.js";
 import fetchProducts from "../components/fetchProducts.js";
 import displayProducts from "../components/displayProducts.js";
+import { controlPagination } from "../components/pagination.js";
 
 // getting the html elements into js
 export const productsContainer = document.querySelector(".products");
+
 const paginationContainer = document.querySelector(".pagination");
 
+let pageNo = 1;
+let limit = 10;
+
 // function to fetch products and display them in UI
-async function getProductsData() {
+async function getProductsData(pageNo,limit) {
   // fetchProducts("https://fakestoreapi.com/products").then((value)=>{
   //     console.log("value:",value);
   //     displayProducts(value,productsContainer);
   // })
-  let pageNo = 1;
-  let limit = 10;
+
+  let totalProducts = null;
+
   const productDetails = await fetchProducts(pageNo, limit);
-  console.log("data:", productDetails);
-  showProducts(productDetails.products,productsContainer);
+
+  totalProducts = productDetails.total;
+  // console.log("data:", productDetails);
+  showProducts(productDetails.products,pageNo,limit,totalProducts);
 }
-getProductsData();
+
+getProductsData(pageNo,limit);
 
 // function to show products
-function showProducts(products) {
+function showProducts(products,pageNo,limit,totalProducts) {
   if (products) {
     displayProducts(products, productsContainer);
+    controlPagination(pageNo,totalProducts,limit,paginationContainer)
   }
+}
+
+// function to handle pagination
+export function handlePagination(currentPage,limit){
+  getProductsData(currentPage,limit);
+
 }
 
 // TODO:This commented code will be removed later
