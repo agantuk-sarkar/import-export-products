@@ -4,18 +4,31 @@ import displayProducts from "../components/displayProducts.js";
 
 // getting the html elements into js
 export const productsContainer = document.querySelector(".products");
+const paginationContainer = document.querySelector(".pagination");
 
 // function to fetch products and display them in UI
-function getProductsData(){
-    fetchProducts("https://fakestoreapi.com/products").then((value)=>{
-        console.log("value:",value);
-        displayProducts(value,productsContainer);
-    })
+async function getProductsData() {
+  // fetchProducts("https://fakestoreapi.com/products").then((value)=>{
+  //     console.log("value:",value);
+  //     displayProducts(value,productsContainer);
+  // })
+  let pageNo = 1;
+  let limit = 10;
+  const productDetails = await fetchProducts(pageNo, limit);
+  console.log("data:", productDetails);
+  showProducts(productDetails.products,productsContainer);
 }
 getProductsData();
 
+// function to show products
+function showProducts(products) {
+  if (products) {
+    displayProducts(products, productsContainer);
+  }
+}
+
 // TODO:This commented code will be removed later
- 
+
 // // fetch the products
 // const fetchProducts = async () => {
 //   try {

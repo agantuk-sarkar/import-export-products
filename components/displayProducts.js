@@ -11,7 +11,7 @@ const displayProducts = (data,productsContainer) => {
   
       const image = document.createElement("img");
       image.classList.add("image");
-      image.src = product.image;
+      image.src = product.thumbnail;
   
       imageContainer.append(image);
   
@@ -28,7 +28,7 @@ const displayProducts = (data,productsContainer) => {
   
       const ratingElement = document.createElement("p");
       ratingElement.classList.add("rating-element");
-      ratingElement.textContent = product.rating.rate;
+      ratingElement.textContent = product.rating;
   
       textContainer.append(titleElement, priceElement, ratingElement);
   

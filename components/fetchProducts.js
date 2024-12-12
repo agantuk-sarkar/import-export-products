@@ -1,7 +1,9 @@
 // fetch the products
-const fetchProducts = async (url) => {
+const fetchProducts = async (pageNo, limit = 10) => {
     try {
-      const response = await fetch(url);
+      let skip = (pageNo - 1) * limit;
+
+      const response = await fetch(`https://dummyjson.com/products?limit=${limit}&skip=${skip}`);
   
       if (response.ok) {
         const data = await response.json();
