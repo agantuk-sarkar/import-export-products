@@ -98,3 +98,7 @@
         cursor: pointer;
     }
 }
+.active{
+    background-color:blue;
+    color:white;
+}
